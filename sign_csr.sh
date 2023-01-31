@@ -33,7 +33,11 @@ CA_KEY_ENCRYPTED=tls/ca/private/ca_ecc_key.enc
 CA_CERT=tls/ca/certs/ca_ecc_cert.pem
 
 # Figure out how to use encrypted key and passin
-openssl ca -keyfile ${CA_KEY_ENCRYPTED} -cert ${CA_CERT} -passin file:${CA_PASSWORD} -in ${SERVER_REQ} -out ${SERVER_CERT} -config ${CA_CONFIG}
+VALID_DAYS=$((365*5))
+openssl ca -keyfile ${CA_KEY_ENCRYPTED} -cert ${CA_CERT} -passin file:${CA_PASSWORD} \
+  -in ${SERVER_REQ} -out ${SERVER_CERT} \
+  -days ${VALID_DAYS} -config ${CA_CONFIG} \
+  -rand_serial
 
 # Working
 # openssl ca -keyfile ${CA_KEY} -cert ${CA_CERT} -in ${SERVER_REQ} -out ${SERVER_CERT} -config ${CA_CONFIG}
