@@ -37,7 +37,8 @@ mkdir -p tls/ca/certs tls/ca/private
 
 if [[ -n $SERIAL_FILE ]]; then
   # Generate serial file for tracking last serial used; required to be unique and in hex
-  echo 01 > ${SERIAL_FILE}
+  INIT_SERIAL=$(openssl rand -hex 16)
+  echo ${INIT_SERIAL^^} > ${SERIAL_FILE}
 fi
 
 if [[ -n $INDEX_FILE ]]; then
