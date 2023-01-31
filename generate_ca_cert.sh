@@ -22,6 +22,7 @@ if [ "$INITIALIZE" = "true" ]; then
   # Tracking files; Need to match what is in the openssl config used
   SERIAL_FILE=tls/ca/serials
   INDEX_FILE=tls/ca/index.txt
+  INDEX_FILE_ATTR=tls/ca/index.txt.attr
 fi
 
 # Inputs
@@ -44,6 +45,11 @@ fi
 if [[ -n $INDEX_FILE ]]; then
   # Generate index file for tracking issued certificates
   touch ${INDEX_FILE}
+fi
+
+if [[ -n $INDEX_FILE_ATTR ]]; then
+  # Generate index file for tracking issued certificates
+  echo "unique_subject = no" > ${$INDEX_FILE_ATTR}
 fi
 
 # Check available curves, if needed
