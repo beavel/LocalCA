@@ -49,7 +49,7 @@ fi
 
 if [[ -n $INDEX_FILE_ATTR ]]; then
   # Generate index file for tracking issued certificates
-  echo "unique_subject = no" > ${$INDEX_FILE_ATTR}
+  echo "unique_subject = no" > ${INDEX_FILE_ATTR}
 fi
 
 # Check available curves, if needed
